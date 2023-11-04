@@ -30,8 +30,7 @@ export class UploadComponent implements OnDestroy {
     validators: [
       Validators.required,
       Validators.minLength(3)
-    ],
-    nonNullable: true
+    ]
   })
   uploadForm = new FormGroup({
     title: this.title
@@ -42,7 +41,7 @@ export class UploadComponent implements OnDestroy {
     private auth: AngularFireAuth,
     private clipsService: ClipService,
     private router: Router
-  ) { 
+  ) {
     auth.user.subscribe(user => this.user = user)
   }
 
@@ -76,7 +75,7 @@ export class UploadComponent implements OnDestroy {
     this.inSubmission = true
     this.showPercentage = true
 
-    const clipFileName = uuid() 
+    const clipFileName = uuid()
     const clipPath = `clips/${clipFileName}.mp4`
 
     this.task = this.storage.upload(clipPath, this.file)

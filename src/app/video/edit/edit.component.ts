@@ -1,4 +1,4 @@
-import { 
+import {
   Component, OnInit, OnDestroy, Input, OnChanges, Output,
   EventEmitter
 } from '@angular/core';
@@ -20,15 +20,12 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
   alertMsg = 'Please wait! Updating clip.'
   @Output() update = new EventEmitter()
 
-  clipID = new FormControl('', {
-    nonNullable: true
-  })
+  clipID = new FormControl('', {validators: [Validators.required]});
   title = new FormControl('', {
     validators: [
       Validators.required,
       Validators.minLength(3)
     ],
-    nonNullable: true
   })
   editForm = new FormGroup({
     title: this.title,
@@ -36,7 +33,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
   })
 
   constructor(
-    private modal: ModalService, 
+    private modal: ModalService,
     private clipService: ClipService
   ) { }
 
@@ -72,7 +69,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
     try {
       await this.clipService.updateClip(
         this.clipID.value, this.title.value
-      ) 
+      )
     }
     catch(e) {
       this.inSubmission = false

@@ -26,7 +26,7 @@ export class RegisterComponent {
     Validators.required,
     Validators.email
   ], [this.emailTaken.validate])
-  age = new FormControl<number | null>(null, [
+  age = new FormControl(null, [
     Validators.required,
     Validators.min(18),
     Validators.max(120)
